@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main() {
+    const double g = 9.8;
+    double height, totalDistance = 0.0;
+    printf("Enter the initial height (in meters): ");
+    scanf("%lf", &height);
+    for (int bounce = 1; bounce <= 3; ++bounce) {
+        totalDistance += (height * height) / (2 * g);
+        height /= 2.0;
+    }
+    printf("Total distance after 3 bounces: %.2f meters\n", totalDistance);
+    return 0;
+}
