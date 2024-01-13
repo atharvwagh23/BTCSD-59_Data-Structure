@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <math.h>
+
+#define ROWS 3
+#define COLS 3
+void readArray(int arr[ROWS][COLS]) {
+    int i;
+    int j;
+    printf("Enter the elements of the array (%dx%d):\n", ROWS, COLS);
+    for (i = 0; i < ROWS; i++) {
+	for ( j = 0; j < COLS; j++) {
+	    scanf("%d", &arr[i][j]);
+	}
+    }
+}
+void maxAndStd(int arr[ROWS][COLS]) {
+    int max = arr[0][0];
+    int sum = 0;
+    int count = 0;
+    int i;
+    int j;
+    for ( i = 0; i < ROWS; i++) {
+	for ( j = 0; j < COLS; j++) {
+	    if (arr[i][j] > max) {
+		max = arr[i][j];
+	    }
+            sum += arr[i][j];
+	    count++;
+	}
+    }
+    double mean = (double)sum / count;
+    double stdDev = 0;
+    for ( i = 0; i < ROWS; i++) {
+	for ( j = 0; j < COLS; j++) {
+	    stdDev += pow(arr[i][j] - mean, 2);
+	}
+    }
+    stdDev = sqrt(stdDev / count);
+    printf("Maximum element: %d\n", max);
+    printf("Standard Deviation: %lf\n", stdDev);
+}
+
+void printTranspose(int arr[ROWS][COLS]) {
+    int i;
+    int j;
+    printf("Transpose of the matrix:\n");
+    for (j = 0; j < COLS; j++) {
+	for ( i = 0; i < ROWS; i++) {
+	    printf("%d\t", arr[i][j]);
+	}
+	printf("\n");
+    }
+}
+int main() {
+    int array[ROWS][COLS];
+    readArray(array);
+    maxAndStd(array);
+    printTranspose(array);
+    return 0;
+}
