@@ -1,0 +1,42 @@
+#include <stdio.h>
+void payAmountWithNotes(int amount, int purse[7]) {
+    int denominations[] = {100, 50, 20, 10, 5, 2, 1};
+    int notesUsed[7] = {0}; 
+    printf("Notes used to pay Rs. %d:\n", amount);
+
+    for (int i = 0; i < 7; i++) {
+        while (amount >= denominations[i] && purse[i] > 0) {
+            amount -= denominations[i];
+            purse[i]--;
+            notesUsed[i]++;
+        }
+
+        if (notesUsed[i] > 0) {
+            printf("%d notes of Rs. %d\n", notesUsed[i], denominations[i]);
+        }
+    }
+    if (amount == 0) {
+        printf("Amount paid successfully.\n");
+    } else {
+        printf("Insufficient notes to pay the amount.\n");
+    }
+}
+
+int main() {
+    int purse[7];
+    int denominations[] = {100, 50, 20, 10, 5, 2, 1};
+    printf("Enter the number of notes for each denomination:\n");
+    for (int i = 0; i < 7; i++) {
+        printf("Rs. %d notes: ", denominations[i]);
+        scanf("%d", &purse[i]);
+    }
+    int amount;
+    printf("Enter the amount to be paid (less than 1000): ");
+    scanf("%d", &amount);
+    if (amount >= 1000) {
+        printf("Amount should be less than 1000.\n");
+        return 1; 
+    }
+    payAmountWithNotes(amount, purse);
+    return 0;
+}
