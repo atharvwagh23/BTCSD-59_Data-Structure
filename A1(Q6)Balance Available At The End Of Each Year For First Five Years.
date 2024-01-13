@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main() {
+    double principal, interestRate, balance;
+    printf("Enter principal amount: ");
+    scanf("%lf", &principal);
+    printf("Enter annual interest rate: ");
+    scanf("%lf", &interestRate);
+    interestRate /= 100.0;
+    printf("\nYear\tBalance\n");
+    for (int year = 1; year <= 5; ++year) {
+        balance = principal * (1 + interestRate);
+        principal = balance;
+        printf("%d\t%.2f\n", year, balance);
+    }
+    return 0;
+}
